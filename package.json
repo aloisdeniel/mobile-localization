@@ -1,0 +1,37 @@
+﻿{
+  "name": "mobile-localization",
+  "version": "0.0.1",
+  "description": "A tool for managing localized ressources for all mobile plateforms (iOS, Android, Windows Phone, ...)",
+  "main": "mobile-localization.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aloisdeniel/node-mobile-localization.git"
+  },
+  "keywords": [
+    "localize",
+    "ios",
+    "resw",
+    "strings",
+    "globalize",
+    "localize"
+  ],
+  "author": "Aloïs Deniel <alois.deniel@orange.com>",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^0.9.0",
+    "colors": "^1.0.3",
+    "commander": "^2.4.0",
+    "country-data": "0.0.14",
+    "csv": "^0.4.0",
+    "fs-extra": "^0.12.0",
+    "jade": "^1.7.0",
+    "js-yaml": "^3.2.2",
+    "mustache": "^0.8.2"
+  }
+}

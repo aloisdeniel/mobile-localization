@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+
+  head
+    title= "Localization Report"
+    link(href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", rel="stylesheet")
+    style.
+        html { background: #eeeeee; margin:0px; padding: 0px;}
+        body { background: #ffffff; margin:0px 10%; padding: 20px; }
+        h1 { margin: 0px;}
+        table { width: 100%;border-width:1px;border-style:solid;border-color:black;border-collapse:collapse;}
+        th {text-align: left; background:#e3e3e3}
+        td,th {border-width:1px;border-style:solid; border-color:black;padding: 4px;}
+        td.key { width: 20%;}
+        td.value { width: 40%;}
+        td.description { width: 40%;}
+  body
+  
+    h1 Labels
+
+    for os, osid in data
+    
+        - var iclass = "";
+        - if(osid === "ios") iclass="apple"
+        - else if(osid === "android") iclass="android"
+        - else if(osid === "windows") iclass="windows"
+        - else if(osid === "javascript") iclass="html5"
+    
+        h2
+            i.fa.fa-2x(class= "fa-" + iclass)
+            span= " " + osid
+        hr
+        for culture, cultureid in os.cultures
+            h3= "Culture " + cultureid
+
+            table
+                tr
+                    th= "Key"
+                    th= "Value"
+                    th= "Description"
+                for label in culture.labels
+                    tr
+                        td.key= label.key
+                        td.value= label.value
+                        td.description= label.description
+   

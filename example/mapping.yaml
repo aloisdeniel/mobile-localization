@@ -1,0 +1,9 @@
+windows:
+    title:
+        - TitleLabel.Text
+        - HeaderLabel.Text
+        - OpenButton.Content
+
+    subtitle:
+        - MainSublabel.Text
+        - HeaderSubLabel.Text
