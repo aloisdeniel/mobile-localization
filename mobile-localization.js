@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 //Required modules
 var colors = require('colors');
 var fs = require('fs');
@@ -40,8 +41,8 @@ module.exports = {
 }
 
 //Program
-if(require.main === module) { 
-    
+if(require.main === module) {
+
     //Program args
     var program = require('commander');
 
@@ -55,20 +56,20 @@ if(require.main === module) {
       .option('-m, --mapping <path>', 'Adds a yaml mapping file. Each key will be mapped to extra keys.')
       .option('-r, --report', 'Generates an html report of all the labels.')
       .parse(process.argv);
-    
+
     if(program.file) options.file = program.file;
     if(program.os) options.os = [program.os];
     if(program.culture) options.cultures = [program.culture];
     if(program.prefix) options.prefix = [program.prefix];
     if(program.mapping) options.mapping = program.mapping;
     if(program.report) options.report = program.report;
-    if(program.output) { 
+    if(program.output) {
         options.output = program.output;
-        if(options.output.indexOf("/", options.output.length - 1) === -1 && 
-           options.output.indexOf("\\", options.output.length - 1) === -1) 
+        if(options.output.indexOf("/", options.output.length - 1) === -1 &&
+           options.output.indexOf("\\", options.output.length - 1) === -1)
             options.output += "/";
     }
-    
+
     module.exports.generate(options, function(err, files) {
         if(err) {
             console.log(colors.red("Generation failed : %s"),err);
@@ -80,11 +81,11 @@ if(require.main === module) {
 }
 
 function generate(options,callback) {
-    
+
     if(!options) options = module.exports.options;
-    
+
     console.log(colors.green("Generating labels from \"%s\" file, %s os,  %s culture(s) to '%s'..."),options.file,options.os,options.cultures.length === 0 ? "all" : options.cultures,options.output);
-    
+
     module.exports.parseFile(options,function(err,labels) {
         if(err)
         {
@@ -94,7 +95,7 @@ function generate(options,callback) {
         {
             var oses = [];
 
-            for(var os in labels) { 
+            for(var os in labels) {
                 oses.push({
                     id: os,
                     generator : generators[os],
@@ -105,7 +106,7 @@ function generate(options,callback) {
             async.map(oses, function(o,cb) {
 
                 console.log(colors.yellow("[%s] Beginning generation ..."), o.id);
-                
+
                  o.generator.generate(options.output, o.labels, function(err,files) {
                     if(err) {
                         cb(err);
@@ -118,14 +119,14 @@ function generate(options,callback) {
                 });
 
             }, function(err,files) {
-             
+
                 if(err) {
                     callback(err);
                 }
                 else {
-                    
+
                     reporting(labels,options.output + "localization-report.html",function(err) {
-                   
+
                         if(err) {
                             console.log(colors.yellow("[Report] Failed : %s"), err);
                             callback(err);
@@ -136,7 +137,7 @@ function generate(options,callback) {
                         }
 
                     });
-                    
+
                 }
             });
         }
@@ -145,9 +146,9 @@ function generate(options,callback) {
 
 
 function parseFile(options, callback) {
-    
+
     if(!options) options = module.exports.options;
-    
+
     fs.readFile(options.file, 'utf8', function (err,data) {
       if (err) callback(err);
       else {
