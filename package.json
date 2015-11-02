@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "A tool for managing localized ressources for all mobile plateforms (iOS, Android, Windows Phone, ...)",
   "main": "mobile-localization.js",
+  "preferGlobal": true,
   "directories": {
     "example": "example"
   },
@@ -13,9 +14,8 @@
     "type": "git",
     "url": "https://github.com/aloisdeniel/node-mobile-localization.git"
   },
-  "preferGlobal": true,
   "bin": {
-    "mobile-localization": "mobile-localization.js"
+    "mobile-localization": "index.js"
   },
   "keywords": [
     "localize",

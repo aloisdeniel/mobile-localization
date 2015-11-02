@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 //Required modules
 var colors = require('colors');
 var fs = require('fs');
