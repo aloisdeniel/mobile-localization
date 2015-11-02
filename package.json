@@ -1,6 +1,6 @@
 ﻿{
   "name": "mobile-localization",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A tool for managing localized ressources for all mobile plateforms (iOS, Android, Windows Phone, ...)",
   "main": "mobile-localization.js",
   "preferGlobal": true,
